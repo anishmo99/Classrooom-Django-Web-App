@@ -20,15 +20,6 @@ class Class(models.Model):
 		return '{0} {1}'.format(self.classNum,self.section)
 
 
-'''
-class Section(models.Model):
-	student_section = models.CharField(max_length=1)
-	student_class = models.ForeignKey(Class,on_delete=models.CASCADE,default='')
-
-	def __str__(self):
-		return self.student_section
-'''
-
 class Subject(models.Model):
 	subject = models.CharField(max_length=100)
 
@@ -40,7 +31,7 @@ class Question(models.Model):
 	subject = models.ForeignKey(Subject,on_delete=models.CASCADE)
 	question_for_class = models.ForeignKey(Class,on_delete=models.CASCADE,default='')
 	#question_for_section = models.ForeignKey(Section,on_delete=models.CASCADE,default='')
-	#question_by_teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE,default='')
+	question_by_teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE,default='')
 	question_published = models.DateTimeField('date published',default=timezone.now())
 
 	def __str__(self):
